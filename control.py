@@ -399,7 +399,7 @@ def main(win):  # *
 
         # проиграли? вам сюда
         if check_lost(locked_positions):
-            draw_text_middle(win, "ВЫ ПРОИГРАЛИ(((!", 80, (255, 255, 255))
+            draw_text_middle(win, "ВЫ ПРОИГРАЛИ(((!", 80, (123, 105, 255))
             pygame.display.update()
             pygame.time.delay(1500)
             run = False
@@ -411,7 +411,7 @@ def main_menu(win):
     run = True
     while run:
         win.fill((0, 0, 0))
-        draw_text_middle(win, 'Нажмите любую кнопку для начала игры', 48, (255, 255, 255))
+        draw_text_middle(win, 'Нажмите любую кнопку для начала игры', 48, (255, 0, 255))
         pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
