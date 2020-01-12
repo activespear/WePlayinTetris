@@ -1,7 +1,9 @@
 import pygame
 import random
 from pygame import mixer
-
+# from pydub import AudioSegment
+# sound = AudioSegment.from_mp3("/path/to/file.mp3")
+# sound.export("/output/path/file.wav", format="wav")
 
 pygame.font.init()
 pygame.mixer.init()
@@ -17,7 +19,7 @@ top_left_x = (s_width - play_width) // 2
 top_left_y = s_height - play_height
 
 # музыка
-mixer.music.load('critical-hit-and-taylor-davis-theme-korobeiniki.mp3')
+mixer.music.load('critical-hit-and-taylor-davis-tetris-theme-korobeiniki.wav')
 mixer.music.play(-1)
 # формы фигурок
 
@@ -409,7 +411,7 @@ def main_menu(win):
     run = True
     while run:
         win.fill((0, 0, 0))
-        draw_text_middle(win, 'Нажмите любую кнопку для начала игры', 60, (255, 255, 255))
+        draw_text_middle(win, 'Нажмите любую кнопку для начала игры', 48, (255, 255, 255))
         pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
