@@ -4,6 +4,7 @@ from pygame import mixer
 
 
 pygame.font.init()
+pygame.mixer.init()
 
 # глобальные переменные
 s_width = 800
