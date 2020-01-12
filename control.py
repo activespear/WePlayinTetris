@@ -418,6 +418,7 @@ def main_menu(win):
                 main(win)
 
     pygame.display.quit()
+    pygame.mixer.quit()
 
 
 win = pygame.display.set_mode((s_width, s_height))
