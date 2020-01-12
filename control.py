@@ -2,15 +2,9 @@ import pygame
 import random
 
 
-"""
-10 x 20 square grid
-shapes: S, Z, I, O, J, L, T
-represented in order by 0 - 6
-"""
-
 pygame.font.init()
 
-# GLOBALS VARS
+# глобальные переменные
 s_width = 800
 s_height = 700
 play_width = 300  # meaning 300 // 10 = 30 width per block
@@ -20,7 +14,7 @@ block_size = 30
 top_left_x = (s_width - play_width) // 2
 top_left_y = s_height - play_height
 
-# SHAPE FORMATS
+# формы фигурок
 
 S = [['.....',
       '......',
