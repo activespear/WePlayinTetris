@@ -139,12 +139,12 @@ class Piece(object):
 
 # создание игровой сетки - основного поля игры где весь движ
 def create_grid(locked_pos={}):
-    grid = [[(0,0,0) for _ in range(10)] for _ in range(20)]
+    grid = [[(0, 0, 0) for _ in range(10)] for _ in range(20)]
 
     for i in range(len(grid)):
         for j in range(len(grid[i])):
             if (j, i) in locked_pos:
-                c = locked_pos[(j,i)]
+                c = locked_pos[(j, i)]
                 grid[i][j] = c
     return grid
 
@@ -168,7 +168,7 @@ def convert_shape_format(shape):
 
 # СЮДА НЕЛЬЗЯЯЯЯЯ
 def valid_space(shape, grid):
-    accepted_pos = [[(j, i) for j in range(10) if grid[i][j] == (0,0,0)] for i in range(20)]
+    accepted_pos = [[(j, i) for j in range(10) if grid[i][j] == (0, 0, 0)] for i in range(20)]
     accepted_pos = [j for sub in accepted_pos for j in sub]
 
     formatted = convert_shape_format(shape)
@@ -199,7 +199,8 @@ def draw_text_middle(surface, text, size, color):
     font = pygame.font.SysFont("comicsans", size, bold=True)
     label = font.render(text, 1, color)
 
-    surface.blit(label, (top_left_x + play_width /2 - (label.get_width()/2), top_left_y + play_height/2 - label.get_height()/2))
+    surface.blit(label, (top_left_x + play_width /2 - (label.get_width()/2),
+                         top_left_y + play_height/2 - label.get_height()/2))
 
 
 def draw_grid(surface, grid):
@@ -207,7 +208,7 @@ def draw_grid(surface, grid):
     sy = top_left_y
 
     for i in range(len(grid)):
-        pygame.draw.line(surface, (128,128,128), (sx, sy + i*block_size), (sx+play_width, sy + i*block_size))
+        pygame.draw.line(surface, (128, 128, 128), (sx, sy + i*block_size), (sx+play_width, sy + i*block_size))
         for j in range(len(grid[i])):
             pygame.draw.line(surface, (128, 128, 128), (sx + j*block_size, sy), (sx + j*block_size, sy + play_height))
 
@@ -218,12 +219,12 @@ def clear_rows(grid, locked):
     inc = 0
     for i in range(len(grid)-1, -1, -1):
         row = grid[i]
-        if (0,0,0) not in row:
+        if (0, 0, 0) not in row:
             inc += 1
             ind = i
             for j in range(len(row)):
                 try:
-                    del locked[(j,i)]
+                    del locked[(j, i)]
                 except:
                     continue
 
@@ -240,7 +241,7 @@ def clear_rows(grid, locked):
 # отрисовываем фон игры ч.1 - КТО СЛЕДЮЩИЙ
 def draw_next_shape(shape, surface):
     font = pygame.font.SysFont('comicsans', 30)
-    label = font.render('Следующая фигурка:', 1, (255,255,255))
+    label = font.render('Следующая фигурка:', 1, (255, 255, 255))
 
     sx = top_left_x + play_width + 50
     sy = top_left_y + play_height/2 - 100
@@ -250,7 +251,8 @@ def draw_next_shape(shape, surface):
         row = list(line)
         for j, column in enumerate(row):
             if column == '0':
-                pygame.draw.rect(surface, shape.color, (sx + j*block_size, sy + i*block_size, block_size, block_size), 0)
+                pygame.draw.rect(surface, shape.color, (sx + j*block_size, sy + i*block_size,
+                                                        block_size, block_size), 0)
 
     surface.blit(label, (sx + 10, sy - 30))
 
@@ -276,7 +278,7 @@ def max_score():
 
 
 # отрисовываем фон игры - счет и т.д. и т.п.
-def draw_window(surface, grid, score=0, last_score = 0):
+def draw_window(surface, grid, score=0, last_score=0):
     surface.fill((0, 0, 0))
 
     pygame.font.init()
@@ -287,14 +289,14 @@ def draw_window(surface, grid, score=0, last_score = 0):
 
     # current score
     font = pygame.font.SysFont('comicsans', 30)
-    label = font.render('СЧЕТ: ' + str(score), 1, (255,255,255))
+    label = font.render('СЧЕТ: ' + str(score), 1, (255, 255, 255))
 
     sx = top_left_x + play_width + 50
     sy = top_left_y + play_height/2 - 100
 
     surface.blit(label, (sx + 20, sy + 160))
     # last score
-    label = font.render('Лучший счет ' + last_score, 1, (255,255,255))
+    label = font.render('Лучший счет ' + last_score, 1, (255, 255, 255))
 
     sx = top_left_x - 200
     sy = top_left_y + 200
@@ -303,7 +305,8 @@ def draw_window(surface, grid, score=0, last_score = 0):
 
     for i in range(len(grid)):
         for j in range(len(grid[i])):
-            pygame.draw.rect(surface, grid[i][j], (top_left_x + j*block_size, top_left_y + i*block_size, block_size, block_size), 0)
+            pygame.draw.rect(surface, grid[i][j], (top_left_x + j*block_size, top_left_y + i*block_size,
+                                                   block_size, block_size), 0)
 
     pygame.draw.rect(surface, (255, 0, 0), (top_left_x, top_left_y, play_width, play_height), 5)
 
@@ -311,6 +314,8 @@ def draw_window(surface, grid, score=0, last_score = 0):
 
 # все самое интересное
 # тут мы играем
+
+
 def main(win):  # *
     last_score = max_score()
     locked_positions = {}
@@ -391,7 +396,7 @@ def main(win):  # *
 
         # проиграли? вам сюда
         if check_lost(locked_positions):
-            draw_text_middle(win, "ВЫ ПРОИГРАЛИ(((!", 80, (255,255,255))
+            draw_text_middle(win, "ВЫ ПРОИГРАЛИ(((!", 80, (255, 255, 255))
             pygame.display.update()
             pygame.time.delay(1500)
             run = False
@@ -402,8 +407,8 @@ def main(win):  # *
 def main_menu(win):
     run = True
     while run:
-        win.fill((0,0,0))
-        draw_text_middle(win, 'Нажмите любую кнопку для начала игры', 60, (255,255,255))
+        win.fill((0, 0, 0))
+        draw_text_middle(win, 'Нажмите любую кнопку для начала игры', 60, (255, 255, 255))
         pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
