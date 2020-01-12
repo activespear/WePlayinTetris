@@ -1,5 +1,6 @@
 import pygame
 import random
+from pygame import mixer
 
 
 pygame.font.init()
@@ -14,6 +15,9 @@ block_size = 30
 top_left_x = (s_width - play_width) // 2
 top_left_y = s_height - play_height
 
+# музыка
+mixer.music.load('critical-hit-and-taylor-davis-theme-korobeiniki.mp3')
+mixer.music.play(-1)
 # формы фигурок
 
 S = [['.....',
@@ -185,16 +189,27 @@ def check_lost(positions):
     return False
 
 
+# программа выбирает рандомную фигурку
 def get_shape():
-    pass
+    return Piece(5, 0, random.choice(shapes))
 
 
-def draw_text_middle(text, size, color, surface):
-    pass
+# название следюущих двух функций говорит само за себя
+def draw_text_middle(surface, text, size, color):
+    font = pygame.font.SysFont("comicsans", size, bold=True)
+    label = font.render(text, 1, color)
+
+    surface.blit(label, (top_left_x + play_width /2 - (label.get_width()/2), top_left_y + play_height/2 - label.get_height()/2))
 
 
-def draw_grid(surface, row, col):
-    pass
+def draw_grid(surface, grid):
+    sx = top_left_x
+    sy = top_left_y
+
+    for i in range(len(grid)):
+        pygame.draw.line(surface, (128,128,128), (sx, sy + iblock_size), (sx+play_width, sy+ iblock_size))
+        for j in range(len(grid[i])):
+            pygame.draw.line(surface, (128, 128, 128), (sx + jblock_size, sy),(sx + jblock_size, sy + play_height))
 
 
 def clear_rows(grid, locked):
