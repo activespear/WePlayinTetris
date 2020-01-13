@@ -244,7 +244,7 @@ def clear_rows(grid, locked):
 # отрисовываем фон игры ч.1 - КТО СЛЕДЮЩИЙ
 def draw_next_shape(shape, surface):
     font = pygame.font.SysFont('comicsans', 30)
-    label = font.render('Следующая фигурка:', 1, (255, 255, 255))
+    label = font.render('След. фигурка:', 1, (255, 255, 255))
 
     sx = top_left_x + play_width + 50
     sy = top_left_y + play_height/2 - 100
